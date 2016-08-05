@@ -1,8 +1,26 @@
 language: python
 python:
-  - 2.6
-  - 2.7
-  - 3.2
-  - 3.3
-  - 3.4
-script: make test
+  - "2.7"
+  - "3.3"
+  - "3.4"
+  - "3.5"
+  - "pypy"
+sudo: false
+os:
+  - linux
+  - osx
+
+install:
+  - pip install tox
+  - export TOX_ENV=py${TRAVIS_PYTHON_VERSION}
+
+script:
+  - tox -e $TOX_ENV
+
+matrix:
+  fast_finish: true
+  allow_failures:
+    - os: osx
+  include:
+    - python: "3.4"
+      env: TOX_ENV=lint
