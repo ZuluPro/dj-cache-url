@@ -1,19 +1,19 @@
 DJ-Database-URL
 ~~~~~~~~~~~~~~~
 
-.. image:: https://secure.travis-ci.org/kennethreitz/dj-database-url.png?branch=master
-   :target: http://travis-ci.org/kennethreitz/dj-database-url
+.. image:: https://secure.travis-ci.org/kennethreitz/dj-cache-url.png?branch=master
+   :target: http://travis-ci.org/kennethreitz/dj-cache-url
 
 This simple Django utility allows you to utilize the
 `12factor <http://www.12factor.net/backing-services>`_ inspired
-``DATABASE_URL`` environment variable to configure your Django application.
+``CACHE_URL`` environment variable to configure your Django application.
 
-The ``dj_database_url.config`` method returns a Django database connection
+The ``dj_cache_url.config`` method returns a Django cache connection
 dictionary, populated with all the data specified in your URL. There is
 also a `conn_max_age` argument to easily enable Django's connection pool.
 
 If you'd rather not use an environment variable, you can pass a URL in directly
-instead to ``dj_database_url.parse``.
+instead to ``dj_cache_url.parse``.
 
 Supported Databases
 -------------------
@@ -26,28 +26,28 @@ Installation
 
 Installation is simple::
 
-    $ pip install dj-database-url
+    $ pip install dj-cache-url
 
 Usage
 -----
 
-Configure your database in ``settings.py`` from ``DATABASE_URL``::
+Configure your cache in ``settings.py`` from ``CACHE_URL``::
 
-    import dj_database_url
+    import dj_cache_url
 
-    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
+    CACHES['default'] = dj_cache_url.config(conn_max_age=600)
 
 Provide a default::
 
-    DATABASES['default'] = dj_database_url.config(default='postgres://...')
+    CACHES['default'] = dj_cache_url.config(default='postgres://...')
 
 Parse an arbitrary Database URL::
 
-    DATABASES['default'] = dj_database_url.parse('postgres://...', conn_max_age=600)
+    CACHES['default'] = dj_cache_url.parse('postgres://...', conn_max_age=600)
 
-The ``conn_max_age`` attribute is the lifetime of a database connection in seconds
+The ``conn_max_age`` attribute is the lifetime of a cache connection in seconds
 and is available in Django 1.6+. If you do not set a value, it will default to ``0``
-which is Django's historical behavior of using a new database connection on each
+which is Django's historical behavior of using a new cache connection on each
 request. Use ``None`` for unlimited persistent connections.
 
 URL schema
@@ -76,10 +76,10 @@ URL schema
 .. [1] With PostgreSQL, you can also use unix domain socket paths with
        `percent encoding <http://www.postgresql.org/docs/9.2/interactive/libpq-connect.html#AEN38162>`_:
        ``postgres://%2Fvar%2Flib%2Fpostgresql/dbname``.
-.. [2] SQLite connects to file based databases. The same URL format is used, omitting
-       the hostname, and using the "file" portion as the filename of the database.
+.. [2] SQLite connects to file based caches. The same URL format is used, omitting
+       the hostname, and using the "file" portion as the filename of the cache.
        This has the effect of four slashes being present for an absolute file path:
-       ``sqlite:////full/path/to/your/database/file.sqlite``.
+       ``sqlite:////full/path/to/your/cache/file.sqlite``.
 .. [3] Note that when connecting to Oracle the URL isn't in the form you may know
        from using other Oracle tools (like SQLPlus) i.e. user and password are separated
        by ``:`` not by ``/``. Also you can omit ``HOST`` and ``PORT``
