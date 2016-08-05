@@ -1,4 +1,11 @@
 # -*- coding: utf-8 -*-
+"""Use Cache URLs in your Django Application."""
+VERSION = (0, 5, 0)
+__version__ = '.'.join([str(i) for i in VERSION])
+__license__ = 'BSD',
+__url__ = 'https://github.com/ZuluPro/dj-cache-url'
+__author__ = 'Anthony Monthe (ZuluPro)'
+__email__ = 'anthony.monthe@gmail.com'
 
 import os
 
@@ -8,7 +15,7 @@ except ImportError:
     import urllib.parse as urlparse
 
 
-# Register database schemes in URLs.
+# Register cache schemes in URLs.
 urlparse.uses_netloc.append('memcached')
 urlparse.uses_netloc.append('db')
 urlparse.uses_netloc.append('database')

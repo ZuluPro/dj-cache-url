@@ -30,6 +30,14 @@ class CacheTestSuite(unittest.TestCase):
         self.assertEqual(url['BACKEND'], 'django.core.cache.backends.filebased.FileBasedCache')
         self.assertEqual(url['LOCATION'], '/tmp/foo')
 
+    def test_file_relative_parsing(self):
+        self.skipTest("Not made")
+        url = 'file:////tmp/foo'
+        url = dj_cache_url.parse(url)
+
+        self.assertEqual(url['BACKEND'], 'django.core.cache.backends.filebased.FileBasedCache')
+        self.assertEqual(url['LOCATION'], 'tmp/foo')
+
     def test_locmem_parsing(self):
         url = 'locmem://foo'
         url = dj_cache_url.parse(url)
