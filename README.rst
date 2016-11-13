@@ -1,4 +1,4 @@
-DJ-Database-URL
+DJ-Cache-URL
 ~~~~~~~~~~~~~~~
 
 .. image:: https://secure.travis-ci.org/ZuluPro/dj-cache-url.png?branch=master
