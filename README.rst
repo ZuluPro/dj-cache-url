@@ -1,5 +1,9 @@
 DJ-Cache-URL
-~~~~~~~~~~~~~~~
+~~~~~~~~~~~~
+
+**DO NOT USE THIS PROJECT, IT WAS CREATED DURING A BORING NIGHT AND NOT MAINTENED**
+
+**If you want there is: https://github.com/ghickman/django-cache-url**
 
 .. image:: https://secure.travis-ci.org/ZuluPro/dj-cache-url.png?branch=master
    :target: http://travis-ci.org/ZuluPro/dj-cache-url
